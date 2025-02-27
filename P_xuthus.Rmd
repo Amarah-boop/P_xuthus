@@ -11,16 +11,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
-``` {r}
-# Load the data
-data <- read.csv("Papilio_xuthusRawData.csv")
-
-# Check the first few rows and structure of the data
-head(data)
-str(data)
-```
-
-
 
 
 ``` {r}
@@ -31,14 +21,9 @@ data <- read.csv("Papilio_xuthusRawData.csv")
 head(data)
 str(data)
 ```
-``` {r}
-# Check the structure of your data to see if you have coordinates
-str(data)
-```
+
 ``` {r}
 # Load libraries
-library(sf)
-library(leaflet)
 library(ggplot2)
 ```
 
@@ -54,30 +39,17 @@ sum(is.na(data_sf$latitude))   # Count missing latitude values
 
 
 
-```{r}
-colnames(data_sf)
-```
-
-
 ``` {r}
 library(sf)
 ```
 
-``` {r}
-# Convert the data to a spatial object
-data_sf <- st_as_sf(data, coords = c("longitude", "latitude"), crs = 4326)
-
-```
 
 ``` {r}
 # Load the leaflet library
 library(leaflet)
 
-# Create an interactive map
-leaflet(data) %>%
-  addTiles() %>%
-  addCircleMarkers(~longitude, ~latitude, color = ~species, popup = ~species)
 ```
+
 ``` {r}
 # Check the column names in your spatial object
 colnames(data_sf)
