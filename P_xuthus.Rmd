@@ -9,34 +9,20 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 ``` {r}
 # Load the data
-data <- read.csv(Papilio_xuthusRawData.csv)
+data <- read.csv("Papilio_xuthusRawData.csv")
 
 # Check the first few rows and structure of the data
 head(data)
 str(data)
 ```
+
+
+
+
 ``` {r}
 # Load the data (ensure the correct path or file is specified)
 data <- read.csv("Papilio_xuthusRawData.csv")
@@ -55,21 +41,32 @@ library(sf)
 library(leaflet)
 library(ggplot2)
 ```
+
 ``` {r}
 # Assuming your CSV has 'lat' and 'long' columns
-data_sf <- st_as_sf(data, coords = c("long", "lat"), crs = 4326)
+data_sf <- sf::st_as_sf(data, coords = c("longitude", "latitude"), crs = 4326)
+
+
+sum(is.na(data_sf$longitude))  # Count missing longitude values
+sum(is.na(data_sf$latitude))   # Count missing latitude values
+
 ```
+
+
+
+```{r}
+colnames(data_sf)
+```
+
+
 ``` {r}
-# Check the column names of your data
-colnames(data)
+library(sf)
 ```
-``` {r}
-# Replace 'long' and 'lat' with the correct column names
-data_sf <- st_as_sf(data, coords = c("species", longitude", "latitude"), crs = 4326)
-```
+
 ``` {r}
 # Convert the data to a spatial object
 data_sf <- st_as_sf(data, coords = c("longitude", "latitude"), crs = 4326)
+
 ```
 
 ``` {r}
@@ -77,7 +74,7 @@ data_sf <- st_as_sf(data, coords = c("longitude", "latitude"), crs = 4326)
 library(leaflet)
 
 # Create an interactive map
-leaflet(data_sf) %>%
+leaflet(data) %>%
   addTiles() %>%
   addCircleMarkers(~longitude, ~latitude, color = ~species, popup = ~species)
 ```
@@ -101,3 +98,10 @@ leaflet(data_sf) %>%
   addTiles(urlTemplate = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png") %>%
   addCircleMarkers(popup = ~species)
 ```
+
+
+
+
+
+
+
