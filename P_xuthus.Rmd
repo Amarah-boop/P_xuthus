@@ -5,13 +5,16 @@ date: "2025-02-26"
 output: html_document
 ---
 
+## Configuring knitr
+I set up a R markdown document by configuring knitr options. I did this to ensure that my R code is visible in my final document but my setup chunk is hidden.
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-
-
+## Load essential R libraries
+I loaded the data from the CSV file and checked the first few rows and structure of the data. This was done to ensure the data was loaded correctly and to inspect its structure.
 
 ``` {r}
 # Load the data (ensure the correct path or file is specified)
@@ -22,10 +25,9 @@ head(data)
 str(data)
 ```
 
-``` {r}
-# Load libraries
-library(ggplot2)
-```
+
+## Convert data to spacial objects
+I converted the data to a spatial object by specifying the longitude and latitude columns. I then checked for any missing values in the longitude and latitude columns to ensure there were no missing coordinates.
 
 ``` {r}
 # Assuming your CSV has 'lat' and 'long' columns
@@ -38,30 +40,18 @@ sum(is.na(data_sf$latitude))   # Count missing latitude values
 ```
 
 
-
-``` {r}
-library(sf)
-```
-
-
-``` {r}
-# Load the leaflet library
-library(leaflet)
-
-```
+## Check column names
+I checked the column names of the spatial object to ensure the correct columns were included in the spatial data.
 
 ``` {r}
 # Check the column names in your spatial object
 colnames(data_sf)
 ```
-``` {r}
-library(leaflet)
 
-# Create an interactive map
-leaflet(data_sf) %>%
-  addTiles() %>%
-  addCircleMarkers(popup = ~species)
-```
+
+## Create interactive map
+I loaded the leaflet library and created an interactive map. I added tiles from a custom URL template and overlaid circle markers, which display the species information when clicked.
+
 ``` {r}
 library(leaflet)
 
@@ -70,10 +60,4 @@ leaflet(data_sf) %>%
   addTiles(urlTemplate = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png") %>%
   addCircleMarkers(popup = ~species)
 ```
-
-
-
-
-
-
-
+Figure 1. Interactive map displaying the locations of Papilio xuthus with species information shown in popups for each marker. The map uses a light basemap and geographic coordinates from the dataset.
