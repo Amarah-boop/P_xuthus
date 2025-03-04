@@ -50,14 +50,28 @@ colnames(data_sf)
 
 
 ## Create interactive map
-I loaded the leaflet library and created an interactive map. I added tiles from a custom URL template and overlaid circle markers, which display the species information when clicked.
+I loaded the leaflet library and created an interactive map. I added tiles from a custom URL template and overlaid circle markers, which display the species information when clicked. I also added a key with the species name.
 
 ``` {r}
 library(leaflet)
 
-# Create an interactive map with English labels
+# Create an interactive map with customized basemap, blue markers, and adjusted legend with species name on the same line
 leaflet(data_sf) %>%
-  addTiles(urlTemplate = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png") %>%
-  addCircleMarkers(popup = ~species)
+  addTiles(urlTemplate = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png") %>%  # Lighter basemap with more blue tones
+  addCircleMarkers(
+    popup = ~paste("<i>", species, "</i>"),  # Italicized species name in the popup
+    color = "blue",  # Marker color kept as blue
+    radius = 6,    # Marker size
+    fillOpacity = 0.7
+  ) %>%
+  addLegend(
+    position = "topright",  # Legend moved to the top right
+    title = "Species", 
+    colors = c("blue"), 
+    labels = c("Papilio xuthus"),  # No HTML tags here to avoid the line break
+    opacity = 1
+  )
+
 ```
+
 Figure 1. Interactive map displaying the locations of Papilio xuthus with species information shown in popups for each marker. The map uses a light basemap and geographic coordinates from the dataset.
