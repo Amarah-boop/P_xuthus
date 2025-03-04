@@ -8,7 +8,7 @@ output: html_document
 ## Configuring knitr
 I set up a R markdown document by configuring knitr options. I did this to ensure that my R code is visible in my final document but my setup chunk is hidden.
 
-```{r setup, include=FALSE}
+```{r setup, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
