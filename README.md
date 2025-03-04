@@ -1,7 +1,5 @@
 # P_xuthus
-This repository intends to store a GIS exploratory data analysis exercise with data from an open access scientific paper.
-
-This repository contains an R-based analysis of the spatial distribution of Papilio xuthus (an insect species), based on raw location data. The data is visualized using interactive maps to analyze the species' geographical spread.
+This repository intends to store a GIS exploratory data analysis exercise with data from an open access scientific paper and contains an R-based analysis of the spatial distribution of Papilio xuthus (an insect species), based on raw location data. The data is visualized using interactive maps to analyze the species' geographical spread.
 
 Papilio_xuthusRawData.csv: Contains raw data of latitude and longitude coordinates for recorded Papilio xuthus observations.
 R Scripts: The script used to process, visualize, and map the data (provided in this repository).
@@ -45,11 +43,5 @@ This produces a customized interactive map where markers represent the locations
 Expected Output
 An interactive map where the species name appears in a popup when clicking a marker and a legend that displays the species associated with the blue markers.
 
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-Expected Output
-An interactive map where the species name appears in a popup when clicking a marker.
-A legend that displays the species associated with the blue markers.
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
