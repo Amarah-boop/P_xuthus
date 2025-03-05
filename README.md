@@ -45,3 +45,6 @@ An interactive map where the species name appears in a popup when clicking a mar
 
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+GitHub HTML viewer link:
+https://htmlview.glitch.me/?https://github.com/Amarah-boop/P_xuthus/blob/main/P_xuthus.html
